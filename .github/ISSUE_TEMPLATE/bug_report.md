@@ -12,6 +12,7 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
+
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
@@ -24,13 +25,15 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Device Information (please complete the following information):**
- - Device: [e.g. Samsung Galaxy S21]
- - OS Version: [e.g. Android 12]
- - App Version: [e.g. 1.0.0]
+
+    - Device: [e.g. Samsung Galaxy S21]
+    - OS Version: [e.g. Android 12]
+    - App Version: [e.g. 1.0.0]
 
 **Barcode Information:**
- - Barcode Type: [e.g. QR Code, UPC-A, Code 128]
- - Barcode Content: [if relevant and not sensitive]
+
+    - Barcode Type: [e.g. QR Code, UPC-A, Code 128]
+    - Barcode Content: [if relevant and not sensitive]
 
 **Additional context**
 Add any other context about the problem here.
