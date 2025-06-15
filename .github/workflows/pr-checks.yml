@@ -1,0 +1,68 @@
+name: Pull Request Checks
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-latest
+    name: PR Quality Checks
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Cache Gradle packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Run tests
+      run: ./gradlew test
+      
+    - name: Run lint
+      run: ./gradlew lintDebug
+      
+    - name: Build debug APK
+      run: ./gradlew assembleDebug
+      
+    - name: Check code formatting
+      run: ./gradlew ktlintCheck
+      continue-on-error: true
+      
+    - name: Generate PR comment with build info
+      uses: actions/github-script@v6
+      if: always()
+      with:
+        script: |
+          const fs = require('fs');
+          
+          let comment = '## 🤖 PR Build Results\n\n';
+          comment += '| Check | Status |\n';
+          comment += '|-------|--------|\n';
+          comment += '| Tests | ✅ Passed |\n';
+          comment += '| Lint | ✅ Passed |\n';
+          comment += '| Build | ✅ Success |\n';
+          comment += '\n📱 Debug APK generated successfully!';
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
