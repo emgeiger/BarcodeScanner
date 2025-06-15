@@ -11,10 +11,6 @@ allprojects {
     }
 }
 
-dependencies {
-    classpath 'com.android.tools.build:gradle:8.12'
-}
-
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
