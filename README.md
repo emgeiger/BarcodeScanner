@@ -66,8 +66,7 @@ The app uses the following key dependencies:
    - Build the project using Build → Make Project
 
 4. **Run the app**:
-   - Connect an Android device or use an emulator
-   - Click the Run button or use Shift+F10
+   - Connect an Android device or use an emulator   - Click the Run button or use Shift+F10
 
 ## Usage
 
@@ -102,11 +101,13 @@ The app requires the following permission:
 ## Building from Source
 
 ### Prerequisites
+
 - Android Studio Arctic Fox or later
 - Android SDK 24 or higher
 - Kotlin 1.9+
 
 ### Build Commands
+
 ```bash
 # Debug build
 ./gradlew assembleDebug
@@ -133,14 +134,17 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Troubleshooting
 
 ### Camera Permission Issues
+
 - Ensure camera permission is granted in device settings
 - Restart the app after granting permission
 
 ### Camera Not Working
+
 - Check if another app is using the camera
 - Restart the device if camera access is blocked
 
 ### Barcode Not Detected
+
 - Ensure good lighting conditions
 - Hold the device steady
 - Make sure the barcode is clearly visible and not damaged

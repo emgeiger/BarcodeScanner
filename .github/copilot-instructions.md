@@ -5,6 +5,7 @@
 This is an Android application that uses the device camera to scan and decode various types of barcodes including QR codes, UPC, EAN, Code 128, and other common barcode formats.
 
 ## Project Structure
+
 - Uses Kotlin as the primary programming language
 - Implements CameraX for camera functionality
 - Uses Google ML Kit for barcode scanning
@@ -12,18 +13,21 @@ This is an Android application that uses the device camera to scan and decode va
 - Targets Android API 24+ (Android 7.0)
 
 ## Key Components
+
 - **MainActivity.kt**: Main activity that handles camera preview and barcode scanning
 - **activity_main.xml**: Layout file with camera preview and result display
 - **Scanner overlay**: Visual guide for barcode positioning
 - **Real-time scanning**: Continuous barcode detection in camera preview
 
 ## Dependencies
+
 - AndroidX CameraX libraries for camera functionality
 - Google ML Kit Barcode Scanning for barcode detection
 - Material Components for UI elements
 - Kotlin coroutines for async operations
 
 ## Development Guidelines
+
 - Always request camera permissions before accessing camera
 - Handle camera lifecycle properly with CameraX
 - Implement proper error handling for camera and scanning operations
@@ -32,6 +36,7 @@ This is an Android application that uses the device camera to scan and decode va
 - Test on different device orientations and screen sizes
 
 ## Features Implemented
+
 - Real-time barcode scanning
 - Support for multiple barcode formats
 - Camera permission handling
