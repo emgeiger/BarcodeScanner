@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Barcode Scanner</string>
+    <string name="camera_permission_required">Camera permission is required for scanning barcodes</string>
+    <string name="scanning_instructions">Point camera at a barcode</string>
+    <string name="scan_button">Scan</string>
+    <string name="clear_button">Clear</string>
+    <string name="barcode_detected">Barcode detected:</string>
+    <string name="unknown_barcode">Unknown barcode type</string>
+    <string name="scan_in_progress">Scanning for barcodes...</string>
+</resources>
