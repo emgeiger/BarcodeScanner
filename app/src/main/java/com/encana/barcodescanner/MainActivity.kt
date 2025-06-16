@@ -1,4 +1,4 @@
-package com.example.barcodescanner
+package com.encana.barcodescanner
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import com.example.barcodescanner.databinding.ActivityMainBinding
+import com.encana.barcodescanner.databinding.ActivityMainBinding
+import com.encana.barcodescanner.data.BarcodeHistoryRepository
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
@@ -20,6 +21,7 @@ import java.util.concurrent.Executors
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var cameraExecutor: ExecutorService
+    private lateinit var barcodeHistoryRepository: BarcodeHistoryRepository
     private var imageCapture: ImageCapture? = null
     private var imageAnalyzer: ImageAnalysis? = null
 
@@ -42,12 +44,13 @@ class MainActivity : AppCompatActivity() {
             } else {
                 startCamera()
             }
-        }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        }    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Initialize barcode history repository
+        barcodeHistoryRepository = BarcodeHistoryRepository(this)
 
         // Request camera permissions
         if (allPermissionsGranted()) {
@@ -56,18 +59,25 @@ class MainActivity : AppCompatActivity() {
             requestPermissions()
         }
 
-        cameraExecutor = Executors.newSingleThreadExecutor()
-
-        // Set up scan button
+        cameraExecutor = Executors.newSingleThreadExecutor()        // Set up scan button
         binding.scanButton.setOnClickListener {
-            // Manual scan trigger if needed
-            Toast.makeText(this, "Scanning for barcodes...", Toast.LENGTH_SHORT).show()
-        }
-
-        // Set up clear button
+            // Show scan history
+            val history = barcodeHistoryRepository.getHistory()
+            if (history.isNotEmpty()) {
+                val historyText = history.take(5).joinToString("\n") { 
+                    "${it.value} (${it.type})" 
+                }
+                Toast.makeText(this, "Recent scans:\n$historyText", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "No scan history available", Toast.LENGTH_SHORT).show()
+            }
+        }// Set up clear button
         binding.clearButton.setOnClickListener {
             binding.resultText.text = "Point camera at a barcode"
             binding.barcodeTypeText.text = ""
+            // Optionally clear history - uncomment to enable
+            // barcodeHistoryRepository.clearHistory()
+            // Toast.makeText(this, "History cleared", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -123,9 +133,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }, ContextCompat.getMainExecutor(this))
-    }
-
-    private fun processBarcodes(barcodes: List<Barcode>) {
+    }    private fun processBarcodes(barcodes: List<Barcode>) {
         if (barcodes.isNotEmpty()) {
             val barcode = barcodes.first()
             val barcodeValue = barcode.rawValue ?: "Unknown"
@@ -134,7 +142,13 @@ class MainActivity : AppCompatActivity() {
             binding.resultText.text = barcodeValue
             binding.barcodeTypeText.text = "Type: $barcodeType"
             
+            // Save to history
+            barcodeHistoryRepository.saveBarcodeToHistory(barcodeValue, barcodeType)
+            
             Log.d(TAG, "Barcode detected: $barcodeValue (Type: $barcodeType)")
+            
+            // Show confirmation toast
+            Toast.makeText(this, "Barcode saved to history", Toast.LENGTH_SHORT).show()
         }
     }
 
