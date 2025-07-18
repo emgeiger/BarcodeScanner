@@ -96,3 +96,6 @@ Thumbs.db
 # Signing files
 upload-keystore.jks
 release-keystore.jks
+
+# GitHub Copilot instructions (workspace-specific)
+.github/copilot-instructions.md
