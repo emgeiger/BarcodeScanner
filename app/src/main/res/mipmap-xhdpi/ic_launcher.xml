@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+    
+    <!-- Background circle -->
+    <path
+        android:fillColor="#3DDC84"
+        android:pathData="M24,24m-24,0a24,24 0,1 1,48 0a24,24 0,1 1,-48 0" />
+    
+    <!-- Barcode scanner icon -->
+    <group android:scaleX="0.6"
+        android:scaleY="0.6"
+        android:translateX="9.6"
+        android:translateY="9.6">
+        
+        <!-- Scanner frame -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M6,3h36v42h-36z"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="1" />
+        
+        <!-- Barcode lines -->
+        <path
+            android:fillColor="#000000"
+            android:pathData="M10,10h2v28h-2z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M14,10h1v28h-1z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M17,10h2v28h-2z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M21,10h1v28h-1z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M24,10h2v28h-2z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M28,10h1v28h-1z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M31,10h2v28h-2z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M35,10h1v28h-1z" />
+        <path
+            android:fillColor="#000000"
+            android:pathData="M38,10h2v28h-2z" />
+            
+        <!-- Scanner beam line -->
+        <path
+            android:fillColor="#FF4444"
+            android:pathData="M8,24h32v1h-32z" />
+            
+    </group>
+</vector>

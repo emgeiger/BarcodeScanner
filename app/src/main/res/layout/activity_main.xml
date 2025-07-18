@@ -50,7 +50,7 @@
             android:gravity="center"
             android:minHeight="48dp"
             android:padding="12dp"
-            android:text="Point camera at a barcode"
+            android:text="Press 'Scan' to start scanning barcodes"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold" />

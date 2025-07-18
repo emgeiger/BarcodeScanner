@@ -7,17 +7,8 @@ import com.google.gson.reflect.TypeToken
 import java.util.*
 
 /**
- * Data class representing a scanned barcode entry
- */
-data class BarcodeHistoryItem(
-    val value: String,
-    val type: String,
-    val timestamp: Long = System.currentTimeMillis(),
-    val id: String = UUID.randomUUID().toString()
-)
-
-/**
  * Repository class for managing barcode scan history
+ * Note: BarcodeHistoryItem data class is defined in BarcodeModels.kt
  */
 class BarcodeHistoryRepository(context: Context) {
     
@@ -36,7 +27,12 @@ class BarcodeHistoryRepository(context: Context) {
      */
     fun saveBarcodeToHistory(value: String, type: String) {
         val currentHistory = getHistory().toMutableList()
-        val newItem = BarcodeHistoryItem(value, type)
+        val newItem = BarcodeHistoryItem(
+            value = value,
+            type = type,
+            timestamp = System.currentTimeMillis(),
+            id = UUID.randomUUID().toString()
+        )
         
         // Remove duplicate if exists
         currentHistory.removeAll { it.value == value }

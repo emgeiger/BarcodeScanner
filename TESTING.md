@@ -5,28 +5,33 @@ This document describes the testing strategy and how to run tests for the Androi
 ## Test Structure
 
 ### Unit Tests (`src/test/`)
+
 - **BarcodeHistoryRepositoryTest.kt**: Tests data persistence and barcode history management
 - **MainActivityTest.kt**: Tests MainActivity logic components
 - **BarcodeAnalyzerLogicTest.kt**: Tests barcode analysis and processing logic
 - **TestUtils.kt**: Utility classes and helper methods for testing
 
 ### Instrumented Tests (`src/androidTest/`)
+
 - **MainActivityInstrumentedTest.kt**: Tests UI components and Android-specific functionality
 - **BarcodeHistoryRepositoryIntegrationTest.kt**: Integration tests with real Android context
 
 ## Running Tests
 
 ### Run Unit Tests
+
 ```bash
 ./gradlew test
 ```
 
 ### Run Instrumented Tests (requires device/emulator)
+
 ```bash
 ./gradlew connectedAndroidTest
 ```
 
 ### Run Specific Test Classes
+
 ```bash
 # Unit test
 ./gradlew test --tests com.encana.barcodescanner.data.BarcodeHistoryRepositoryTest
@@ -36,6 +41,7 @@ This document describes the testing strategy and how to run tests for the Androi
 ```
 
 ### Run Test Suites
+
 ```bash
 # All unit tests
 ./gradlew test --tests com.encana.barcodescanner.UnitTestSuite
@@ -49,6 +55,7 @@ This document describes the testing strategy and how to run tests for the Androi
 ### What's Tested
 
 #### BarcodeHistoryRepository
+
 - ✅ Saving barcode items to history
 - ✅ Retrieving history items
 - ✅ Clearing history
@@ -60,6 +67,7 @@ This document describes the testing strategy and how to run tests for the Androi
 - ✅ Error handling for malformed data
 
 #### MainActivity
+
 - ✅ Barcode type mapping for all supported formats
 - ✅ UI component initialization
 - ✅ Button click handling
@@ -67,6 +75,7 @@ This document describes the testing strategy and how to run tests for the Androi
 - ✅ Display text updates
 
 #### BarcodeAnalyzer Logic
+
 - ✅ Processing empty barcode lists
 - ✅ Processing single barcodes
 - ✅ Processing multiple barcodes
@@ -78,11 +87,13 @@ This document describes the testing strategy and how to run tests for the Androi
 The following test dependencies are included:
 
 #### Unit Testing
+
 - **JUnit 4**: Core testing framework
 - **Mockito**: Mocking framework for isolating dependencies
 - **Robolectric**: Android unit testing without device/emulator
 
 #### Instrumented Testing
+
 - **Espresso**: UI testing framework
 - **AndroidX Test**: Android testing utilities
 - **UI Automator**: Cross-app UI testing
@@ -99,6 +110,7 @@ The following test dependencies are included:
 ## Test Data
 
 Test utilities provide:
+
 - Sample barcode items with various types
 - Common barcode values for different formats
 - Helper methods for creating test data
@@ -106,6 +118,7 @@ Test utilities provide:
 ## Continuous Integration
 
 Tests are configured to run in CI/CD pipelines:
+
 - Unit tests run on every pull request
 - Instrumented tests run on develop branch merges
 - Test reports are generated and archived
@@ -135,5 +148,6 @@ Tests are configured to run in CI/CD pipelines:
 ### Command Line Test Reports
 
 Test reports are generated in:
+
 - Unit tests: `app/build/reports/tests/testDebugUnitTest/`
 - Instrumented tests: `app/build/reports/androidTests/connected/`

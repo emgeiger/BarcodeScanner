@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/menu_sensitivity"
+        android:title="Sensitivity Settings"
+        android:icon="@android:drawable/ic_menu_manage"
+        app:showAsAction="never">
+        
+        <menu>
+            <item
+                android:id="@+id/sensitivity_maximum"
+                android:title="🎯 Maximum Sensitivity"
+                android:checkable="true" />
+            <item
+                android:id="@+id/sensitivity_high"
+                android:title="⚡ High Sensitivity"
+                android:checkable="true" />
+            <item
+                android:id="@+id/sensitivity_normal"
+                android:title="⚖️ Normal Sensitivity"
+                android:checkable="true"
+                android:checked="true" />
+            <item
+                android:id="@+id/sensitivity_fast"
+                android:title="🚀 Fast Scanning"
+                android:checkable="true" />
+            <item
+                android:id="@+id/sensitivity_ultra_fast"
+                android:title="⏰ Ultra Fast"
+                android:checkable="true" />
+        </menu>
+    </item>
+    
+</menu>
